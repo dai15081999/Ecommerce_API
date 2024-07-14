@@ -12,7 +12,7 @@ export class UserEntity {
     email: string;
     @Column({ select: true })
     password: string;
-    @Column({ type: 'enum', enum: Roles, array: true, default: [Roles.USER]})
+    @Column({ type: 'enum', enum: Roles, array: true, default: [Roles.ADMIN]})
     roles: Roles
     @CreateDateColumn()
     createdAt: Timestamp

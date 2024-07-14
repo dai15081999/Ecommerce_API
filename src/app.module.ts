@@ -13,6 +13,8 @@ import { CategoriesModule } from './categories/categories.module';
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(CurrentUserMiddleware).forRoutes({path: '*', method: RequestMethod.ALL})
+    consumer
+      .apply(CurrentUserMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }
