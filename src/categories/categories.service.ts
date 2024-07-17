@@ -8,40 +8,48 @@ import { UserEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class CategoriesService {
-  constructor(@InjectRepository(CategoryEntity) private readonly categoryRepository: Repository<CategoryEntity>){}
+  constructor(
+    @InjectRepository(CategoryEntity)
+    private readonly categoryRepository: Repository<CategoryEntity>,
+  ) {}
 
-
-
-  async create(createCategoryDto: CreateCategoryDto, currentUser: UserEntity): Promise<CategoryEntity> {
-    const category = await this.categoryRepository.create(createCategoryDto)
-    category.addedBy = currentUser
-    return await this.categoryRepository.save(category)
+  async create(
+    createCategoryDto: CreateCategoryDto,
+    currentUser: UserEntity,
+  ): Promise<CategoryEntity> {
+    const category = await this.categoryRepository.create(createCategoryDto);
+    category.addedBy = currentUser;
+    return await this.categoryRepository.save(category);
   }
 
   async findAll(): Promise<CategoryEntity[]> {
-    return await this.categoryRepository.find()
+    return await this.categoryRepository.find();
   }
 
   async findOne(id: number) {
-    return await this.categoryRepository.findOne({
+    const category = await this.categoryRepository.findOne({
       where: { id: id },
-      relations: { addedBy: true},
+      relations: { addedBy: true },
       select: {
         addedBy: {
           id: true,
           name: true,
-          email: true
-        }
-      }
-    },
-  )
+          email: true,
+        },
+      },
+    });
+    if (!category) throw new NotFoundException('Category not found');
+    return category;
   }
 
-  async update(id: number, fields: Partial<UpdateCategoryDto>): Promise<CategoryEntity> {
-    const category = await this.findOne(id)
-    if(!category) throw new NotFoundException('Category not found.')
-    Object.assign(category, fields)
-    return await this.categoryRepository.save(category)
+  async update(
+    id: number,
+    fields: Partial<UpdateCategoryDto>,
+  ): Promise<CategoryEntity> {
+    const category = await this.findOne(id);
+    if (!category) throw new NotFoundException('Category not found.');
+    Object.assign(category, fields);
+    return await this.categoryRepository.save(category);
   }
 
   remove(id: number) {
