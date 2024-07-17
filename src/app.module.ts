@@ -5,10 +5,22 @@ import { UsersModule } from './users/users.module';
 import { CurrentUserMiddleware } from './utility/middlewares/current-user.middleware';
 import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
-
+import { CacheModule } from '@nestjs/cache-manager';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), UsersModule, CategoriesModule, ProductsModule],
+  imports: [
+    CacheModule.register({
+      max: 100,
+      ttl: 0,
+      isGlobal: true
+    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
+    UsersModule,
+    CategoriesModule,
+    ProductsModule,
+    ReviewsModule,
+  ],
   controllers: [],
   providers: [],
 })
