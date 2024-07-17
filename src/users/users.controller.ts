@@ -10,8 +10,10 @@ import { AuthenticationGuard } from 'src/utility/guards/authentication.guards';
 import { AuthorizeRoles } from 'src/utility/decorators/authorize-roles.decorator';
 import { Roles } from 'src/utility/common/user_roles.enum';
 import { AuthorizeGuard } from 'src/utility/guards/authorization.guards';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @Controller('users')
+@ApiTags('Users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -20,6 +22,7 @@ export class UsersController {
     return await this.usersService.signup(userSignup)
   }
 
+  @ApiBearerAuth()
   @Post('signin')
   async signin(@Body() userSigninDto: UserSigninDto): Promise<{
     accessToken: string,
