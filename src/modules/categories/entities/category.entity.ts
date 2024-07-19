@@ -1,5 +1,6 @@
-import { ProductEntity } from "src/products/entities/product.entity";
-import { UserEntity } from "src/users/entities/user.entity";
+
+import { ProductEntity } from "src/modules/products/entities/product.entity";
+import { UserEntity } from "src/modules/users/entities/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
 
 @Entity({name: 'categories'})
