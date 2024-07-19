@@ -7,6 +7,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ProductsModule } from './products/products.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ReviewsModule } from './reviews/reviews.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { ReviewsModule } from './reviews/reviews.module';
     CategoriesModule,
     ProductsModule,
     ReviewsModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],
