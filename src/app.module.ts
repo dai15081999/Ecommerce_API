@@ -1,13 +1,13 @@
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dataSourceOptions } from 'db/data-source';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './modules/users/users.module';
 import { CurrentUserMiddleware } from './utility/middlewares/current-user.middleware';
-import { CategoriesModule } from './categories/categories.module';
-import { ProductsModule } from './products/products.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import { ReviewsModule } from './reviews/reviews.module';
-import { OrdersModule } from './orders/orders.module';
+import { ReviewsModule } from './modules/reviews/reviews.module';
+import { OrdersModule } from './modules/orders/orders.module';
+import { CategoriesModule } from './modules/categories/categories.module';
+import { ProductsModule } from './modules/products/products.module';
 
 @Module({
   imports: [

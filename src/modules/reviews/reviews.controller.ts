@@ -4,7 +4,7 @@ import { CreateReviewDto } from './dto/create-review.dto';
 import { UpdateReviewDto } from './dto/update-review.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { CurrentUser } from 'src/utility/decorators/current-user.decorator';
-import { UserEntity } from 'src/users/entities/user.entity';
+import { UserEntity } from 'src/modules/users/entities/user.entity';
 import { ReviewEntity } from './entities/review.entity';
 import { AuthenticationGuard } from 'src/utility/guards/authentication.guards';
 import { AuthorizeGuard } from 'src/utility/guards/authorization.guards';
