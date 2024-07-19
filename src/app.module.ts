@@ -14,7 +14,7 @@ import { ProductsModule } from './modules/products/products.module';
     CacheModule.register({
       max: 100,
       ttl: 0,
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot(dataSourceOptions),
     UsersModule,
