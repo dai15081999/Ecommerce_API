@@ -10,7 +10,7 @@ import { UserEntity } from 'src/modules/users/entities/user.entity';
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
-  @UseGuards(AuthenticationGuard)
+  @UseGuards(AuthenticationGuard
   @Post()
   async create(@Body() createOrderDto: CreateOrderDto, @CurrentUser() currentUser: UserEntity) {
     return await this.ordersService.create(createOrderDto, currentUser);
